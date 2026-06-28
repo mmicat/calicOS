@@ -1,0 +1,61 @@
+:root {
+  --color-watermelon: #E36D9B;
+  --color-canary: #e7dd6a;
+  --color-limeade: #a0cb75;
+  --color-emerald: #10b183;
+  --color-royalblue: #2b4789;
+  
+  --color-bg: #fffbf5; /* A warm off-white for better contrast with vibrant colors */
+  --color-text: #1a1a1a;
+  --color-text-light: #555555;
+  --color-shadow: rgba(26, 26, 26, 0.25);
+
+  --font-heading: 'Bowlby One', sans-serif;
+  --font-body: 'Schibsted Grotesk', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 400; /* Bowlby One is naturally thick */
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Lenis smooth scrolling base setup */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}

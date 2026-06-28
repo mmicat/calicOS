@@ -1,0 +1,21 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: "Comic Sans MS", Optima, cursive, sans-serif;
+}
+
+#intro-box {
+    background-color: grey;
+    width: fit-content;
+    height: fit-content;
+    margin: 100px;
+    padding: 100px;
+    border-radius: 5%;
+    justify-content: center;
+}
+
+img {
+    width: 400px;
+    height: auto;
+    border-radius: 100%;
+}

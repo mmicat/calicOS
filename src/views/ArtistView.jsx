@@ -47,7 +47,7 @@ const ArtistView = () => {
         <motion.h1 layoutId="heroTitle" className={styles.heroTitle} style={{ color: 'var(--color-watermelon)' }}>
           kelicode
         </motion.h1>
-        <motion.p layoutId="heroSubtitle" className={styles.heroSubtitle}>Digital Artist.</motion.p>
+        <motion.p layoutId="heroSubtitle" className={styles.heroSubtitle}>Digital Artist</motion.p>
 
         <div style={{ marginTop: '2rem' }}>
           <h2 className={styles.sectionTitle}>What can I do?</h2>

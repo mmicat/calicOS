@@ -100,7 +100,7 @@ const EngineerView = () => {
 
   const PROJECTS = [
     {
-      title: "Immersive Digital Twin Lite",
+      title: "Immersive DTLite for Evacuation Training",
       role: "Simulation Engineer",
       image: null,
       desc: "Autonomous agent behavior and dynamic hazard modeling in game engines. Logged real-time simulation analytics and used LLMs for natural language coaching.",
@@ -114,7 +114,7 @@ const EngineerView = () => {
       link: null
     },
     {
-      title: "Pawfinder (Pet Adoption)",
+      title: "Pawfinder",
       role: "Full-Stack Developer",
       image: null,
       desc: "Collaborated on a Java Spring & Spring Data pet adoption platform to streamline rescue-to-adoption pipelines. Architected backend entity relationships and user scenarios for a data-driven experience using Git for version control.",
@@ -163,7 +163,7 @@ const EngineerView = () => {
           <motion.h1 layoutId="heroTitle" className={styles.heroTitle}>
             MIRA<br/>ISMAIL
           </motion.h1>
-          <motion.p layoutId="heroSubtitle" className={styles.heroSubtitle}>Creative Systems & Web Engineer.</motion.p>
+          <motion.p layoutId="heroSubtitle" className={styles.heroSubtitle}>Creative Systems & Web Engineer</motion.p>
           <p className={styles.heroDesc}>Advocate for good, merging systems engineering & beautifully human UI.</p>
           <div className={styles.actionRow}>
             <Faux3DButton color="var(--color-canary)" href="/media/Mira_Mohamad_Ismail_CV.pdf">
@@ -246,7 +246,7 @@ const EngineerView = () => {
             <div className={styles.timelineItem}>
               <h3><a href="https://www.developforgood.org/" target="_blank" rel="noreferrer" className={styles.hoverLink}>Develop for Good</a></h3>
               <p className={styles.meta}>Software Engineer Fellow | May 2026 - Aug 2026</p>
-              <p className={styles.cardDesc}>Architected a learning platform for 400+ underserved students, streamlining high-impact educational content delivery.</p>
+              <p className={styles.cardDesc}>Building the KidsWork Hub learning platform for <a href="https://makeanimpactnow.org/" target="_blank" rel="noreferrer" className={styles.hoverLink}>Make An Impact Foundation</a> aimed at kids grades 6 to 12, streamlining high-impact educational content delivery.</p>
             </div>
             <div className={styles.timelineItem}>
               <h3><a href="https://www.instagram.com/hotridescustoms/" target="_blank" rel="noreferrer" className={styles.hoverLink}>Hot Rides Customs Garage LLC</a></h3>
@@ -289,9 +289,9 @@ const EngineerView = () => {
               </div>
             </div>
             <div className={styles.shelf}>
-              <div className={styles.shelfItem}><span>CodePath AI201</span></div>
-              <div className={styles.shelfItem}><span>CodePath WEB102</span></div>
-              <div className={styles.shelfItem}><span>Develop For Good</span></div>
+              <div className={styles.shelfItem}><span>CodePath AI201: Applications of AI Engineering</span></div>
+              <div className={styles.shelfItem}><span>CodePath WEB102: Intermediate Web Development</span></div>
+              <div className={styles.shelfItem}><span>Develop For Good Fellowship</span></div>
             </div>
           </div>
         </section>

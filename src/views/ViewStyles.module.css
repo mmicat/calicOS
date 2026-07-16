@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 4rem 0;
+  padding: 3rem 0;
 }
 
 .heroTitle {
@@ -24,7 +24,7 @@
 .heroSubtitle {
   font-family: var(--font-body);
   font-size: 1.8rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--color-royalblue);
   margin-bottom: 1rem;
   text-transform: uppercase;

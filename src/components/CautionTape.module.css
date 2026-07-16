@@ -1,0 +1,60 @@
+.tapeContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  background-image: linear-gradient(
+    -45deg,
+    var(--color-canary) 25%,
+    var(--color-text) 25%,
+    var(--color-text) 50%,
+    var(--color-canary) 50%,
+    var(--color-canary) 75%,
+    var(--color-text) 75%,
+    var(--color-text) 100%
+  );
+  background-size: 60px 60px;
+  animation: slideTape 2s linear infinite;
+  border-top: 3px solid var(--color-text);
+  border-bottom: 3px solid var(--color-text);
+  
+  /* Negative margins to break out of main-content padding */
+  margin-left: -2rem;
+  margin-right: -2rem;
+  width: calc(100% + 4rem);
+  
+  /* Spacing */
+  margin-top: 3rem;
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .tapeContainer {
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    width: calc(100% + 3rem);
+  }
+}
+
+@keyframes slideTape {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 60px 0;
+  }
+}
+
+.textBadge {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  padding: 0.35rem 1.25rem;
+  border: 2px solid var(--color-text);
+  border-radius: 6px;
+  text-transform: uppercase;
+  box-shadow: 2px 2px 0px var(--color-text);
+  z-index: 2;
+  white-space: nowrap;
+}

@@ -8,6 +8,7 @@ import EngineerView from './views/EngineerView';
 import ArtistView from './views/ArtistView';
 
 import Splash from './components/Splash';
+import CautionTape from './components/CautionTape';
 
 import './App.css'; // Global App layout styles
 
@@ -47,6 +48,7 @@ const AnimatedRoutes = () => {
                 <Route path="/artist" element={<ArtistView />} />
               </Routes>
             </AnimatePresence>
+            <CautionTape />
           </main>
         </>
       )}

@@ -4,7 +4,10 @@ import styles from './ThemeToggle.module.css';
 
 const ThemeToggle = () => {
   const [expanded, setExpanded] = useState(false);
-  const [theme, setTheme] = useState('colorful');
+  const [theme, setTheme] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('theme') === 'monotone' ? 'monotone' : 'colorful';
+  });
 
   useEffect(() => {
     if (theme === 'monotone') {

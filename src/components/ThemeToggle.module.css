@@ -1,0 +1,76 @@
+.container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 9999;
+  width: 50px;
+  height: 50px;
+}
+
+.mainButton {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--color-bg);
+  border: 2px solid var(--color-text);
+  color: var(--color-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  transition: background-color 0.3s ease;
+}
+
+.nodesContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.node {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--color-text);
+  cursor: pointer;
+  padding: 0;
+  overflow: hidden;
+  background: var(--color-bg);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -18px;
+  margin-top: -18px;
+  pointer-events: auto;
+}
+
+.colorfulNode {
+  /* No position relative needed here */
+}
+
+.pie {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  /* Hardcoding the hex values instead of using variables so the preview never changes to limeade */
+  background: conic-gradient(
+    #E36D9B 0deg 72deg,
+    #e7dd6a 72deg 144deg,
+    #a0cb75 144deg 216deg,
+    #10b183 216deg 288deg,
+    #2b4789 288deg 360deg
+  );
+}
+
+.monotoneNode {
+  /* Hardcoded limeade */
+  background: #a0cb75;
+}

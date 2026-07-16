@@ -9,6 +9,7 @@ import ArtistView from './views/ArtistView';
 
 import Splash from './components/Splash';
 import CautionTape from './components/CautionTape';
+import ThemeToggle from './components/ThemeToggle';
 
 import './App.css'; // Global App layout styles
 
@@ -49,6 +50,7 @@ const AnimatedRoutes = () => {
               </Routes>
             </AnimatePresence>
             <CautionTape />
+            <ThemeToggle />
           </main>
         </>
       )}

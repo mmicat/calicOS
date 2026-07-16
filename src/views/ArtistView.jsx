@@ -44,7 +44,7 @@ const ArtistView = () => {
       className={styles.viewContainer}
     >
       <section id="art-hero" className={styles.section}>
-        <motion.h1 layoutId="heroTitle" className={styles.heroTitle} style={{ color: 'var(--color-watermelon)' }}>
+        <motion.h1 layoutId="heroTitle" className={styles.heroTitle} style={{ color: 'var(--color-artist-title)', textShadow: '4px 4px 0px var(--color-artist-shadow)' }}>
           kelicode
         </motion.h1>
         <motion.p layoutId="heroSubtitle" className={styles.heroSubtitle}>Digital Artist</motion.p>
@@ -90,7 +90,7 @@ const ArtistView = () => {
           <table className={styles.matrixTable}>
             <thead>
               <tr>
-                <th style={{ backgroundColor: 'transparent' }}>Style</th>
+                <th style={{ backgroundColor: 'transparent' }}></th>
                 <th>headshot/small graphic</th>
                 <th>half-bod/medium graphic</th>
                 <th>full/large graphic</th>

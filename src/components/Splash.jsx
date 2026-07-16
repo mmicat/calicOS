@@ -42,7 +42,8 @@ const Splash = ({ onComplete }) => {
           style={{
             fontFamily: 'var(--font-heading)',
             fontSize: 'clamp(3.5rem, 12vw, 8rem)',
-            color: isArtist ? 'var(--color-watermelon)' : 'var(--color-text)',
+            color: isArtist ? 'var(--color-artist-title)' : 'var(--color-text)',
+            textShadow: isArtist ? '4px 4px 0px var(--color-artist-shadow)' : '4px 4px 0px var(--color-canary)',
             margin: 0,
             marginBottom: '1rem',
             lineHeight: 0.9,
@@ -61,7 +62,7 @@ const Splash = ({ onComplete }) => {
             fontFamily: 'var(--font-body)',
             fontSize: '1.8rem',
             fontWeight: 700,
-            color: isArtist ? 'var(--color-text)' : 'var(--color-royalblue)',
+            color: isArtist ? 'var(--color-limeade)' : 'var(--color-limeade)',
             margin: 0,
             marginBottom: '1rem',
             textTransform: 'uppercase',

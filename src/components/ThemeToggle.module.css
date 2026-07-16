@@ -52,10 +52,6 @@
   pointer-events: auto;
 }
 
-.colorfulNode {
-  /* No position relative needed here */
-}
-
 .pie {
   width: 100%;
   height: 100%;

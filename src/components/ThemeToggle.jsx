@@ -53,9 +53,8 @@ const ThemeToggle = () => {
         )}
       </AnimatePresence>
       <button className={styles.mainButton}>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 2.69l5.66 4.2c.42.31.68.8.68 1.33v8.56c0 .9-.73 1.63-1.63 1.63H7.29A1.63 1.63 0 0 1 5.66 16.78V8.22c0-.53.26-1.02.68-1.33L12 2.69z" />
-          <circle cx="12" cy="12" r="3" />
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M12.433 10.07C14.133 10.585 16 11.15 16 8a8 8 0 1 0-8 8c1.996 0 1.826-1.504 1.649-3.08-.124-1.101-.252-2.237.351-2.92.465-.527 1.42-.237 2.433.07zM8 5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm4.5 3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM5 6.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm.5 6.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
         </svg>
       </button>
     </div>

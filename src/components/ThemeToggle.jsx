@@ -3,7 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import styles from './ThemeToggle.module.css';
 
 const ThemeToggle = () => {
-  const [expanded, setExpanded] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+  const expanded = isHovered || isClicked;
+
   const [theme, setTheme] = useState(() => {
     const params = new URLSearchParams(window.location.search);
     return params.get('theme') === 'monotone' ? 'monotone' : 'colorful';
@@ -20,8 +23,8 @@ const ThemeToggle = () => {
   return (
     <div 
       className={styles.container}
-      onMouseEnter={() => setExpanded(true)}
-      onMouseLeave={() => setExpanded(false)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <AnimatePresence>
         {expanded && (
@@ -36,7 +39,11 @@ const ThemeToggle = () => {
               transition={{ duration: 0.3, type: "spring", stiffness: 400, damping: 25 }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              onClick={() => setTheme('colorful')}
+              onClick={() => {
+                setTheme('colorful');
+                setIsClicked(false);
+                setIsHovered(false);
+              }}
               title="Colorful Theme"
             >
               <div className={styles.pie} />
@@ -49,13 +56,20 @@ const ThemeToggle = () => {
               transition={{ duration: 0.3, type: "spring", stiffness: 400, damping: 25, delay: 0.05 }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              onClick={() => setTheme('monotone')}
+              onClick={() => {
+                setTheme('monotone');
+                setIsClicked(false);
+                setIsHovered(false);
+              }}
               title="Monotone Theme"
             />
           </motion.div>
         )}
       </AnimatePresence>
-      <button className={styles.mainButton}>
+      <button 
+        className={styles.mainButton}
+        onClick={() => setIsClicked(!isClicked)}
+      >
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
           <path d="M12.433 10.07C14.133 10.585 16 11.15 16 8a8 8 0 1 0-8 8c1.996 0 1.826-1.504 1.649-3.08-.124-1.101-.252-2.237.351-2.92.465-.527 1.42-.237 2.433.07zM8 5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm4.5 3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM5 6.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm.5 6.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
         </svg>

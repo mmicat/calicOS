@@ -60,6 +60,27 @@ const AnimatedRoutes = () => {
 
 function App() {
   useEffect(() => {
+    const favicons = [
+      '/media/bintu-ico-emerald.png',
+      '/media/bintu-ico-limeade.png',
+      '/media/bintu-ico-canary.png',
+      '/media/bintu-ico-watermelon.png',
+      '/media/bintu-ico-royalblue.png'
+    ];
+    let currentIndex = 0;
+    
+    const intervalId = setInterval(() => {
+      currentIndex = (currentIndex + 1) % favicons.length;
+      const link = document.querySelector("link[rel~='icon']");
+      if (link) {
+        link.href = favicons[currentIndex];
+      }
+    }, 2000); // 2 seconds interval
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

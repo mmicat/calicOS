@@ -112,7 +112,7 @@ const Sidebar = ({ sections }) => {
             <>
               <a href="mailto:mi6491@rit.edu" className={styles.contactLink}>Email <ArrowUpRight /></a>
               <a href="https://linkedin.com/in/mira-m-ismail" target="_blank" rel="noreferrer" className={styles.contactLink}>LinkedIn <ArrowUpRight /></a>
-              <a href="https://github.com/mira-m-ismail" target="_blank" rel="noreferrer" className={styles.contactLink}>GitHub <ArrowUpRight /></a>
+              <a href="https://github.com/mmicat" target="_blank" rel="noreferrer" className={styles.contactLink}>GitHub <ArrowUpRight /></a>
             </>
           )}
         </div>

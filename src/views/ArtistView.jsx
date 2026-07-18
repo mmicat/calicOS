@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Faux3DButton from '../components/Faux3DButton';
+import GalleryDeck from '../components/GalleryDeck';
 import styles from './ViewStyles.module.css';
 import { ShoppingBag } from 'lucide-react';
 import { Instagram } from '../components/BrandIcons';
@@ -49,16 +50,22 @@ const ArtistView = () => {
         </motion.h1>
         <motion.p layoutId="heroSubtitle" className={styles.heroSubtitle}>Digital Artist</motion.p>
 
-        <div style={{ marginTop: '2rem' }}>
-          <h2 className={styles.sectionTitle}>What can I do?</h2>
-          <ul style={{ listStyleType: 'disc', paddingLeft: '2rem', fontFamily: 'var(--font-body)', fontSize: '1.2rem', color: 'var(--color-text-light)', lineHeight: '1.8' }}>
-            <li>humans (semi-realism)</li>
-            <li>animals & critters</li>
-            <li>anthropomorphic</li>
-            <li>typography</li>
-            <li>sticker designs</li>
-            <li>OCs and fanart</li>
-          </ul>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4rem', marginTop: '2rem', alignItems: 'flex-start' }}>
+          <div style={{ flex: '1', minWidth: '300px' }}>
+            <h2 className={styles.sectionTitle}>What can I do?</h2>
+            <ul style={{ listStyleType: 'disc', paddingLeft: '2rem', fontFamily: 'var(--font-body)', fontSize: '1.2rem', color: 'var(--color-text-light)', lineHeight: '1.8' }}>
+              <li>humans (semi-realism)</li>
+              <li>animals & critters</li>
+              <li>anthropomorphic</li>
+              <li>typography</li>
+              <li>sticker designs</li>
+              <li>OCs and fanart</li>
+            </ul>
+          </div>
+          
+          <div style={{ flex: '1.2', minWidth: '300px' }}>
+            <GalleryDeck />
+          </div>
         </div>
       </section>
 

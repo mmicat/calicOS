@@ -228,7 +228,7 @@ const EngineerView = () => {
         <section id="stack" className={styles.section}>
           <h2 className={styles.sectionTitle}>Tech Stack</h2>
           <div className={styles.stackGrid}>
-            {['React', 'Node.js', 'Spring Boot', 'MySQL', 'Python', 'Framer Motion', 'Vite', 'Figma', 'HTML/CSS', 'JavaScript', 'Java', 'WordPress', 'AI/ML'].map((tech, i) => (
+            {['React', 'Next.js', 'Node.js', 'TypeScript', 'Spring Boot', 'MySQL', 'PostgreSQL', 'Python', 'Framer Motion', 'Vite', 'Flask', 'Figma', 'HTML/CSS', 'JavaScript', 'Java', 'WordPress', 'AI/ML'].map((tech, i) => (
               <motion.div 
                 key={tech} 
                 className={styles.stackBadge}
@@ -259,7 +259,7 @@ const EngineerView = () => {
               <p className={styles.cardDesc}>Comprehensively tested Android apps to uphold high QA standards for both English and Arabic versions.</p>
             </div>
             <div className={styles.timelineItem}>
-              <h3><span>Scrapyard Hackathon</span></h3>
+              <h3><a href="https://scrapyard.hackclub.com/sharjah" target="_blank" rel="noreferrer" className={styles.hoverLink}>Scrapyard Hackathon</a></h3>
               <p className={styles.meta}>Marketing MVP | Jan - Mar 2025</p>
               <p className={styles.cardDesc}>A global hackathon run by high school students for "stupid inventions!" Ran locally at Sheraa' Hub, AUS. Responsible for marketing initiatives securing participants and sponsors like balsamiq & Hetzner.</p>
             </div>

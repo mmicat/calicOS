@@ -10,6 +10,7 @@ import ArtistView from './views/ArtistView';
 import Splash from './components/Splash';
 import CautionTape from './components/CautionTape';
 import ThemeToggle from './components/ThemeToggle';
+import FundTrackerView from './views/FundTrackerView';
 
 import './App.css'; // Global App layout styles
 
@@ -31,8 +32,10 @@ const ARTIST_SECTIONS = [
 const AnimatedRoutes = () => {
   const location = useLocation();
   const [showSplash, setShowSplash] = React.useState(true);
+  
   const isArtist = location.pathname === '/artist';
-  const sections = isArtist ? ARTIST_SECTIONS : ENGINEER_SECTIONS;
+  const isFund = location.pathname === '/fund';
+  const sections = isFund ? [] : (isArtist ? ARTIST_SECTIONS : ENGINEER_SECTIONS);
 
   return (
     <LayoutGroup>
@@ -47,6 +50,7 @@ const AnimatedRoutes = () => {
               <Routes location={location} key={location.pathname}>
                 <Route path="/" element={<EngineerView />} />
                 <Route path="/artist" element={<ArtistView />} />
+                <Route path="/fund" element={<FundTrackerView />} />
               </Routes>
             </AnimatePresence>
             <CautionTape />

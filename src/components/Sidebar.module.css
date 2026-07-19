@@ -107,6 +107,28 @@
   gap: 0.35rem;
 }
 
+.fundIconBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-bg);
+  background-color: var(--color-watermelon);
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 2px solid var(--color-text);
+  box-shadow: 2px 2px 0px var(--color-shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: max-content;
+  text-decoration: none;
+}
+
+.fundIconBtn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px var(--color-shadow);
+  color: var(--color-bg);
+}
+
 .contactLocation {
   font-family: var(--font-body);
   font-size: 0.6rem;

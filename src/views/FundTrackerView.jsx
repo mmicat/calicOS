@@ -91,9 +91,10 @@ const FundTrackerView = () => {
           <li> 16gb ram</li>
           <li> 1tb ssd</li>
         </ul>
-
+        <br></br>
+        thank you for stopping by! ^^ 
         </p>
-      
+
 
       <div className={styles.linksSectionWrapper}>
         <h3 className={styles.helpHeading}>how can i help?</h3>
@@ -111,7 +112,7 @@ const FundTrackerView = () => {
             </Faux3DButton>
           </div>
           <div className={styles.linkContainer}>
-            <Faux3DButton color="var(--color-emerald)" href="https://acggoods.com/">
+            <Faux3DButton color="var(--color-emerald)" href="https://acggoods.com/store/calicode">
               <ShoppingBag size={18} />
               Shop ACGGoods
             </Faux3DButton>

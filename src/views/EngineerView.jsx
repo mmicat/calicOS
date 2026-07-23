@@ -4,6 +4,7 @@ import Faux3DButton from '../components/Faux3DButton';
 import styles from './ViewStyles.module.css';
 import { Download, X } from 'lucide-react';
 import { Github } from '../components/BrandIcons';
+import TechStack from '../components/TechStack';
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -104,6 +105,7 @@ const EngineerView = () => {
       role: "Simulation Engineer",
       image: null,
       desc: "Autonomous agent behavior and dynamic hazard modeling in game engines. Logged real-time simulation analytics and used LLMs for natural language coaching.",
+      tech: ["Unity", "C#", "LLMs"],
       link: null
     },
     {
@@ -111,6 +113,7 @@ const EngineerView = () => {
       role: "Game Designer & Sprite Artist",
       image: null,
       desc: "Collaborated in a 6-month program utilizing C# logic and iterative testing to win \"Best Overall Game\".",
+      tech: ["Unity", "C#", "Aseprite"],
       link: null
     },
     {
@@ -118,6 +121,7 @@ const EngineerView = () => {
       role: "Full-Stack Developer",
       image: null,
       desc: "Collaborated on a Java Spring & Spring Data pet adoption platform to streamline rescue-to-adoption pipelines. Architected backend entity relationships and user scenarios for a data-driven experience using Git for version control.",
+      tech: ["Java", "Spring Boot", "MySQL", "Git"],
       link: null
     },
     {
@@ -127,9 +131,11 @@ const EngineerView = () => {
         "../media/Screenshot HRCA Dashboard.png",
         "../media/Screenshot Invoices Engine.png",
         "../media/Screenshot New Job Card.png",
-        '../media/Screenshot Loyalty Cards.png'
+        '../media/Screenshot Loyalty Cards.png',
+        "../media/Screenshot Accounting.png"
       ],
       desc: "A private, auth-protected web app built for Hot Rides Customs Garage to replace the manual process of creating service job cards. Generates numbered Job Cards to PDFs, invoices specific job cards with real-time totals, and maintains a client/vehicle database. Deployed on Render.",
+      tech: ["React", "Node.js", "Express", "MySQL"],
       link: "https://github.com/mmicat/hrc-automator"
     },
     {
@@ -137,6 +143,7 @@ const EngineerView = () => {
       role: "Creative Developer",
       image: "../media/Screenshot Space Lullaby & The Outlaw's Archive.png",
       desc: "An interactive web experience exploring a space lullaby concept, recognized for its take on storytelling, design and user interaction.",
+      tech: ["HTML", "CSS", "JavaScript", "threeJS"],
       link: "https://mira-m-ismail.github.io/SpaceLullaby/space-lullaby.html"
     }
   ];
@@ -208,12 +215,14 @@ const EngineerView = () => {
                   </div>
                   <h3 className={styles.projectTitle}>{project.title}</h3>
                   <p className={styles.projectRole}>{project.role}</p>
+                  <TechStack tech={project.tech} />
                 </div>
               ) : (
                 <div key={i} className={`${styles.card} ${styles.projectCardTextOnly}`}>
                   <h3 className={styles.projectTitle}>{project.title}</h3>
                   <p className={styles.projectRole} style={{ marginBottom: '1rem' }}>{project.role}</p>
                   <p className={styles.cardDesc} style={{ flexGrow: 1 }}>{project.desc}</p>
+                  <TechStack tech={project.tech} />
                   {project.link && (
                     <div style={{ marginTop: '1.5rem' }}>
                       <Faux3DButton href={project.link} color="var(--color-emerald)">View Live</Faux3DButton>
@@ -228,7 +237,7 @@ const EngineerView = () => {
         <section id="stack" className={styles.section}>
           <h2 className={styles.sectionTitle}>Tech Stack</h2>
           <div className={styles.stackGrid}>
-            {['React', 'Next.js', 'Node.js', 'TypeScript', 'Spring Boot', 'MySQL', 'PostgreSQL', 'Python', 'Framer Motion', 'Vite', 'Flask', 'Figma', 'HTML/CSS', 'JavaScript', 'Java', 'WordPress', 'AI/ML'].map((tech, i) => (
+            {['React', 'Next.js', 'Node.js', 'Spring Boot', 'MySQL', 'PostgreSQL', 'Python', 'Framer Motion', 'Vite', 'Flask', 'Figma', 'HTML/CSS', 'Tailwind CSS', 'JavaScript', 'Java', 'WordPress', 'AI/ML'].map((tech, i) => (
               <motion.div 
                 key={tech} 
                 className={styles.stackBadge}
@@ -247,21 +256,25 @@ const EngineerView = () => {
               <h3><a href="https://www.developforgood.org/" target="_blank" rel="noreferrer" className={styles.hoverLink}>Develop for Good</a></h3>
               <p className={styles.meta}>Software Engineer Fellow | May 2026 - Aug 2026</p>
               <p className={styles.cardDesc}>Building the KidsWork Hub learning platform for <a href="https://makeanimpactnow.org/" target="_blank" rel="noreferrer" className={styles.hoverLink}>Make An Impact Foundation</a> aimed at kids grades 6 to 12, streamlining high-impact educational content delivery.</p>
+              <TechStack tech={["WordPress", "PHP", "Figma", "Notion", "HTML", "CSS", "JavaScript"]} />
             </div>
             <div className={styles.timelineItem}>
               <h3><a href="https://www.instagram.com/hotridescustoms/" target="_blank" rel="noreferrer" className={styles.hoverLink}>Hot Rides Customs Garage LLC</a></h3>
               <p className={styles.meta}>Full-Stack Systems Developer | 2024 - Present</p>
               <p className={styles.cardDesc}>Developed and deployed an automated Job Card & Invoice Generator using React, Node.js, and MySQL. Also built their commercial landing page.</p>
+              <TechStack tech={["React", "Node.js", "MySQL", "Express"]} />
             </div>
             <div className={styles.timelineItem}>
               <h3><span>Tabby</span></h3>
               <p className={styles.meta}>Regression UX Tester | 2024 - 2025</p>
               <p className={styles.cardDesc}>Comprehensively tested Android apps to uphold high QA standards for both English and Arabic versions.</p>
+              <TechStack tech={["Android", "Bug Reporting", "Regression Testing"]} />
             </div>
             <div className={styles.timelineItem}>
               <h3><a href="https://scrapyard.hackclub.com/sharjah" target="_blank" rel="noreferrer" className={styles.hoverLink}>Scrapyard Hackathon</a></h3>
               <p className={styles.meta}>Marketing MVP | Jan - Mar 2025</p>
               <p className={styles.cardDesc}>A global hackathon run by high school students for "stupid inventions!" Ran locally at Sheraa' Hub, AUS. Responsible for marketing initiatives securing participants and sponsors like balsamiq & Hetzner.</p>
+              <TechStack tech={["Marketing", "Partnerships", "Event Coordination"]} />
             </div>
           </div>
         </section>

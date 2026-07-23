@@ -1,0 +1,27 @@
+.techContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.techChip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  opacity: 0.6;
+  background-color: transparent;
+  padding: 0.2rem 0.4rem 0.2rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+}
+
+.techChip:hover {
+  color: var(--color-text);
+  opacity: 1;
+}

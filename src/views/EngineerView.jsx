@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Faux3DButton from '../components/Faux3DButton';
 import styles from './ViewStyles.module.css';
-import { Download, X } from 'lucide-react';
+import { Download, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Github } from '../components/BrandIcons';
 import TechStack from '../components/TechStack';
 
@@ -95,6 +95,15 @@ const MediaModal = ({ isOpen, onClose, project }) => {
 
 const EngineerView = () => {
   const [modalState, setModalState] = useState({ isOpen: false, project: null });
+  const [isMobile, setIsMobile] = useState(false);
+  const [currentProjectIdx, setCurrentProjectIdx] = useState(0);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const openModal = (project) => setModalState({ isOpen: true, project });
   const closeModal = () => setModalState({ isOpen: false, project: null });
@@ -154,6 +163,47 @@ const EngineerView = () => {
     return hasImageB - hasImageA;
   });
 
+  const nextProject = () => {
+    setCurrentProjectIdx((prev) => (prev + 1) % sortedProjects.length);
+  };
+  
+  const prevProject = () => {
+    setCurrentProjectIdx((prev) => (prev - 1 + sortedProjects.length) % sortedProjects.length);
+  };
+
+  const renderProject = (project, i) => {
+    return project.image ? (
+      <div key={i} className={`${styles.card} ${styles.projectCard}`}>
+        <div className={styles.projectImageContainer}>
+          {Array.isArray(project.image) ? (
+            <Slideshow images={project.image} style={{ height: '100%' }} />
+          ) : (
+            <img src={project.image} alt={project.title} />
+          )}
+          <div className={styles.projectHoverOverlay}>
+            <p className={styles.projectHoverDesc}>{project.desc}</p>
+            <button className={styles.projectMoreBtn} onClick={() => openModal(project)}>More</button>
+          </div>
+        </div>
+        <h3 className={styles.projectTitle}>{project.title}</h3>
+        <p className={styles.projectRole}>{project.role}</p>
+        <TechStack tech={project.tech} />
+      </div>
+    ) : (
+      <div key={i} className={`${styles.card} ${styles.projectCardTextOnly}`}>
+        <h3 className={styles.projectTitle}>{project.title}</h3>
+        <p className={styles.projectRole} style={{ marginBottom: '1rem' }}>{project.role}</p>
+        <p className={styles.cardDesc} style={{ flexGrow: 1 }}>{project.desc}</p>
+        <TechStack tech={project.tech} />
+        {project.link && (
+          <div style={{ marginTop: '1.5rem' }}>
+            <Faux3DButton href={project.link} color="var(--color-emerald)">View Live</Faux3DButton>
+          </div>
+        )}
+      </div>
+    );
+  };
+
   return (
     <>
       <MediaModal isOpen={modalState.isOpen} onClose={closeModal} project={modalState.project} />
@@ -191,47 +241,37 @@ const EngineerView = () => {
               A student at <a href="https://www.rit.edu/dubai/" target="_blank" rel="noreferrer" className={styles.hoverLink}>Rochester Institute of Technology, Dubai</a>, passionate about product design, design engineering, and creative technology.<br></br>I'm building scalable systems while ensuring ethics, accessibility and human expression are at the forefront, always. 
             </p>
             <p>
-              When I'm not coding, I'm cooking up events with my friends or creating digital art!
+              When I'm not coding, I'm cooking up great things with great people or creating digital art!
             </p>
           </div>
         </section>
 
         <section id="projects" className={styles.section}>
           <h2 className={styles.sectionTitle}>Projects & Initiatives</h2>
-          <div className={styles.projectGrid}>
-            {sortedProjects.map((project, i) => (
-              project.image ? (
-                <div key={i} className={`${styles.card} ${styles.projectCard}`}>
-                  <div className={styles.projectImageContainer}>
-                    {Array.isArray(project.image) ? (
-                      <Slideshow images={project.image} style={{ height: '100%' }} />
-                    ) : (
-                      <img src={project.image} alt={project.title} />
-                    )}
-                    <div className={styles.projectHoverOverlay}>
-                      <p className={styles.projectHoverDesc}>{project.desc}</p>
-                      <button className={styles.projectMoreBtn} onClick={() => openModal(project)}>More</button>
-                    </div>
-                  </div>
-                  <h3 className={styles.projectTitle}>{project.title}</h3>
-                  <p className={styles.projectRole}>{project.role}</p>
-                  <TechStack tech={project.tech} />
-                </div>
-              ) : (
-                <div key={i} className={`${styles.card} ${styles.projectCardTextOnly}`}>
-                  <h3 className={styles.projectTitle}>{project.title}</h3>
-                  <p className={styles.projectRole} style={{ marginBottom: '1rem' }}>{project.role}</p>
-                  <p className={styles.cardDesc} style={{ flexGrow: 1 }}>{project.desc}</p>
-                  <TechStack tech={project.tech} />
-                  {project.link && (
-                    <div style={{ marginTop: '1.5rem' }}>
-                      <Faux3DButton href={project.link} color="var(--color-emerald)">View Live</Faux3DButton>
-                    </div>
-                  )}
-                </div>
-              )
-            ))}
-          </div>
+          {isMobile ? (
+            <div className={styles.mobileCarousel}>
+              <div className={styles.carouselHeader}>
+                <button onClick={prevProject} className={styles.carouselArrow}><ChevronLeft size={24}/></button>
+                <span className={styles.carouselCounter}>{currentProjectIdx + 1} / {sortedProjects.length}</span>
+                <button onClick={nextProject} className={styles.carouselArrow}><ChevronRight size={24}/></button>
+              </div>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentProjectIdx}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {renderProject(sortedProjects[currentProjectIdx], currentProjectIdx)}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          ) : (
+            <div className={styles.projectGrid}>
+              {sortedProjects.map((project, i) => renderProject(project, i))}
+            </div>
+          )}
         </section>
 
         <section id="stack" className={styles.section}>

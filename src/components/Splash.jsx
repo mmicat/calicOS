@@ -50,7 +50,7 @@ const Splash = ({ onComplete }) => {
             textAlign: 'left'
           }}
         >
-          {isArtist ? "kelicode" : <>MIRA<br/>ISMAIL</>}
+          {isArtist ? "@kelicoded" : <>MIRA<br/>ISMAIL</>}
         </motion.h1>
         <motion.p
           initial={{ y: 20, opacity: 0 }}

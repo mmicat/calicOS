@@ -46,7 +46,7 @@ const ArtistView = () => {
     >
       <section id="art-hero" className={styles.section}>
         <motion.h1 layoutId="heroTitle" className={styles.heroTitle} style={{ color: 'var(--color-artist-title)', textShadow: '4px 4px 0px var(--color-artist-shadow)' }}>
-          kelicode
+          @kelicoded
         </motion.h1>
         <motion.p layoutId="heroSubtitle" className={styles.heroSubtitle}>Digital Artist</motion.p>
 
@@ -139,7 +139,7 @@ const ArtistView = () => {
             <ShoppingBag size={18} />
             ACGGoods Store
           </Faux3DButton>
-          <Faux3DButton color="var(--color-watermelon)" href="https://www.instagram.com/06sicle/">
+          <Faux3DButton color="var(--color-watermelon)" href="https://www.instagram.com/kelicoded/">
             <Instagram size={18} />
             Instagram
           </Faux3DButton>

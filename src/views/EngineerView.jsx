@@ -97,6 +97,7 @@ const EngineerView = () => {
   const [modalState, setModalState] = useState({ isOpen: false, project: null });
   const [isMobile, setIsMobile] = useState(false);
   const [currentProjectIdx, setCurrentProjectIdx] = useState(0);
+  const [currentCertIdx, setCurrentCertIdx] = useState(0);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
@@ -157,6 +158,18 @@ const EngineerView = () => {
     }
   ];
 
+  const CERTIFICATES = [
+    { type: 'img', src: '/media/GDC DesignAThon.png', alt: 'DesignAThon Prize' },
+    { type: 'img', src: '/media/Scrapyard Sharjah MVP.png', alt: 'Scrapyard MVP' },
+    { type: 'img', src: '/media/Endless Best Game.png', alt: 'Best Overall Game' },
+    { type: 'img', src: '/media/GDC Artist.png', alt: 'Artist Recognition' },
+    { type: 'img', src: '/media/Fall25 Deans List.png', alt: 'Fall 2025 Deans List' },
+    { type: 'text', content: 'Develop For Good Fellowship (Summer 2026)' },
+    { type: 'text', content: 'CodePath AI201: Applications of AI Engineering (Summer 2026)' },
+    { type: 'text', content: 'CodePath AI301: AI Open Source Capstone (Fall 2026)' },
+    { type: 'text', content: 'CodePath WEB103: Advanced Web Development (Fall 2026)' }
+  ];
+
   const sortedProjects = [...PROJECTS].sort((a, b) => {
     const hasImageA = a.image !== null;
     const hasImageB = b.image !== null;
@@ -169,6 +182,14 @@ const EngineerView = () => {
   
   const prevProject = () => {
     setCurrentProjectIdx((prev) => (prev - 1 + sortedProjects.length) % sortedProjects.length);
+  };
+
+  const nextCert = () => {
+    setCurrentCertIdx((prev) => (prev + 1) % CERTIFICATES.length);
+  };
+  
+  const prevCert = () => {
+    setCurrentCertIdx((prev) => (prev - 1 + CERTIFICATES.length) % CERTIFICATES.length);
   };
 
   const renderProject = (project, i) => {
@@ -321,32 +342,52 @@ const EngineerView = () => {
 
         <section id="certificates" className={styles.section}>
           <h2 className={styles.sectionTitle}>Certificates & Awards</h2>
-          <div className={styles.shelfContainer}>
-            <div className={styles.shelf}>
-              <div className={styles.shelfItem}>
-                <img src="/media/GDC DesignAThon.png" alt="DesignAThon Prize" />
+          {isMobile ? (
+            <div className={styles.mobileCarousel} style={{ marginTop: '2rem' }}>
+              <div className={styles.carouselHeader}>
+                <button onClick={prevCert} className={styles.carouselArrow}><ChevronLeft size={24}/></button>
+                <span className={styles.carouselCounter}>{currentCertIdx + 1} / {CERTIFICATES.length}</span>
+                <button onClick={nextCert} className={styles.carouselArrow}><ChevronRight size={24}/></button>
               </div>
-              <div className={styles.shelfItem}>
-                <img src="/media/Scrapyard Sharjah MVP.png" alt="Scrapyard MVP" />
-              </div>
-              <div className={styles.shelfItem}>
-                <img src="/media/Endless Best Game.png" alt="Best Overall Game" />
+              <div className={styles.shelfContainer} style={{ marginTop: '1rem', gap: 0 }}>
+                <div className={styles.shelf} style={{ paddingBottom: '0', justifyContent: 'center' }}>
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={currentCertIdx}
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 20 }}
+                      transition={{ duration: 0.2 }}
+                      className={styles.shelfItem}
+                      style={{ margin: '0 auto', marginBottom: '-3px' }}
+                    >
+                      {CERTIFICATES[currentCertIdx].type === 'img' ? (
+                        <img src={CERTIFICATES[currentCertIdx].src} alt={CERTIFICATES[currentCertIdx].alt} />
+                      ) : (
+                        <span>{CERTIFICATES[currentCertIdx].content}</span>
+                      )}
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
               </div>
             </div>
-            <div className={styles.shelf}>
-              <div className={styles.shelfItem}>
-                <img src="/media/GDC Artist.png" alt="Artist Recognition" />
-              </div>
-              <div className={styles.shelfItem}>
-                <img src="/media/Fall25 Deans List.png" alt="Fall 2025 Deans List" />
-              </div>
+          ) : (
+            <div className={styles.shelfContainer}>
+              {Array.from({ length: Math.ceil(CERTIFICATES.length / 3) }).map((_, chunkIdx) => (
+                <div key={`shelf-${chunkIdx}`} className={styles.shelf}>
+                  {CERTIFICATES.slice(chunkIdx * 3, chunkIdx * 3 + 3).map((cert, i) => (
+                    <div key={`cert-${chunkIdx}-${i}`} className={styles.shelfItem}>
+                      {cert.type === 'img' ? (
+                        <img src={cert.src} alt={cert.alt} />
+                      ) : (
+                        <span>{cert.content}</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ))}
             </div>
-            <div className={styles.shelf}>
-              <div className={styles.shelfItem}><span>CodePath AI201: Applications of AI Engineering</span></div>
-              <div className={styles.shelfItem}><span>CodePath WEB102: Intermediate Web Development</span></div>
-              <div className={styles.shelfItem}><span>Develop For Good Fellowship</span></div>
-            </div>
-          </div>
+          )}
         </section>
       </motion.div>
     </>

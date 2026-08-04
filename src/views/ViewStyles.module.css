@@ -303,28 +303,7 @@
     font-size: 0.9rem;
   }
 
-  .shelfContainer {
-    flex-direction: row;
-    overflow-x: auto;
-    padding-bottom: 1rem;
-    gap: 1rem;
-    align-items: flex-end;
-    -webkit-overflow-scrolling: touch;
-  }
 
-  .shelf {
-    flex-wrap: nowrap;
-    border-bottom: 8px solid var(--color-text);
-    padding-bottom: 0px;
-  }
-
-  .shelfItem {
-    flex-shrink: 0;
-    width: auto;
-    height: 140px;
-    margin-bottom: -3px; /* sit on shelf */
-    border-bottom: 4px solid var(--color-text);
-  }
 }
 
 /* Modal Styles */
@@ -448,6 +427,7 @@
 .shelfItem {
   width: auto;
   min-width: 120px;
+  max-width: 300px;
   height: 160px;
   background-color: var(--color-surface);
   border: 3px solid var(--color-text);

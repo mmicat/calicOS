@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { LayoutGrid, List, ExternalLink, Heart, Gift, Loader2 } from 'lucide-react';
+import { LayoutGrid, List, ExternalLink, Heart, Gift, Loader2, Coffee, DollarSign, ShoppingBag } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import Faux3DButton from '../components/Faux3DButton';
 import styles from './WishlistView.module.css';
 
 const pageVariants = {
@@ -366,6 +368,35 @@ const WishlistView = () => {
 
       {/* Group 2: Wishlist items */}
       {renderItems(WISHLIST_ITEMS, true)}
+
+      {/* Bottom links: Kofi + PayPal + ACGGoods */}
+      <div className={styles.bottomSectionWrapper}>
+        <h3 className={styles.commissionHeading}>
+          <Link to="/artist#commissions" className={styles.commissionLink}>
+            ...or commission me :)
+          </Link>
+        </h3>
+        <div className={styles.linksRow}>
+          <div className={styles.linkContainer}>
+            <Faux3DButton color="var(--color-canary)" href="https://ko-fi.com/calic06/goal?g=2">
+              <Coffee size={18} />
+              Support on Ko-fi
+            </Faux3DButton>
+          </div>
+          <div className={styles.linkContainer}>
+            <Faux3DButton color="var(--color-royalblue)" href="https://paypal.me/mmi0111">
+              <DollarSign size={18} />
+              Send via PayPal
+            </Faux3DButton>
+          </div>
+          <div className={styles.linkContainer}>
+            <Faux3DButton color="var(--color-emerald)" href="https://acggoods.com/store/calicode">
+              <ShoppingBag size={18} />
+              Shop ACGGoods
+            </Faux3DButton>
+          </div>
+        </div>
+      </div>
     </motion.div>
   );
 };

@@ -59,7 +59,7 @@ const AnimatedRoutes = () => {
                 <Route path="/bday" element={<WishlistView />} />
               </Routes>
             </AnimatePresence>
-            <CautionTape />
+            {!isWishlist && <CautionTape />}
             <ThemeToggle />
           </main>
         </>

@@ -24,6 +24,7 @@ const Sidebar = ({ sections }) => {
   const [iconIndex, setIconIndex] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const isWishlist = ['/wishlist', '/birthday', '/bday'].includes(location.pathname);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -78,38 +79,42 @@ const Sidebar = ({ sections }) => {
           />
         </div>
         
-        <div className={styles.viewToggle}>
-          <div className={styles.toggleText}>View Mode</div>
-          <Link to="/" className={`${styles.toggleBtn} ${location.pathname === '/' ? styles.activeToggle : ''}`}>Engineer</Link>
-          <Link to="/artist" className={`${styles.toggleBtn} ${location.pathname === '/artist' ? styles.activeToggle : ''}`}>Artist</Link>
-        </div>
+        {!isWishlist && (
+          <div className={styles.viewToggle}>
+            <div className={styles.toggleText}>View Mode</div>
+            <Link to="/" className={`${styles.toggleBtn} ${location.pathname === '/' ? styles.activeToggle : ''}`}>Engineer</Link>
+            <Link to="/artist" className={`${styles.toggleBtn} ${location.pathname === '/artist' ? styles.activeToggle : ''}`}>Artist</Link>
+          </div>
+        )}
       </div>
       
       <div className={styles.menuContent}>
-        <ul className={styles.navList}>
-          {location.pathname === '/fund' ? (
-            <li>
-              <Link to="/" className={styles.navLink} onClick={() => setIsMobileMenuOpen(false)}>
-                ← Back
-              </Link>
-            </li>
-          ) : (
-            sections.map((section) => (
-              <li key={section.id}>
-                <a 
-                  href={`#${section.id}`} 
-                  className={`${styles.navLink} ${activeSection === section.id ? styles.active : ''}`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {section.label}
-                </a>
+        {!isWishlist && (
+          <ul className={styles.navList}>
+            {location.pathname === '/fund' ? (
+              <li>
+                <Link to="/" className={styles.navLink} onClick={() => setIsMobileMenuOpen(false)}>
+                  ← Back
+                </Link>
               </li>
-            ))
-          )}
-        </ul>
+            ) : (
+              sections.map((section) => (
+                <li key={section.id}>
+                  <a 
+                    href={`#${section.id}`} 
+                    className={`${styles.navLink} ${activeSection === section.id ? styles.active : ''}`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {section.label}
+                  </a>
+                </li>
+              ))
+            )}
+          </ul>
+        )}
         
         <div className={styles.contactSection}>
-          {location.pathname !== '/fund' && (
+          {location.pathname !== '/fund' && !isWishlist && (
             <Link to="/fund" className={styles.fundIconBtn} title="Fundraiser" onClick={() => setIsMobileMenuOpen(false)}>
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M2 1a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l4.586-4.586a1 1 0 0 0 0-1.414l-7-7A1 1 0 0 0 6.586 1zm4 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>

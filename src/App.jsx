@@ -11,6 +11,7 @@ import Splash from './components/Splash';
 import CautionTape from './components/CautionTape';
 import ThemeToggle from './components/ThemeToggle';
 import FundTrackerView from './views/FundTrackerView';
+import WishlistView from './views/WishlistView';
 
 import './App.css'; // Global App layout styles
 
@@ -31,18 +32,20 @@ const ARTIST_SECTIONS = [
 
 const AnimatedRoutes = () => {
   const location = useLocation();
-  const [showSplash, setShowSplash] = React.useState(true);
-  
   const isArtist = location.pathname === '/artist';
   const isFund = location.pathname === '/fund';
-  const sections = isFund ? [] : (isArtist ? ARTIST_SECTIONS : ENGINEER_SECTIONS);
+  const isWishlist = ['/wishlist', '/birthday', '/bday'].includes(location.pathname);
+  const [showSplash, setShowSplash] = React.useState(!isWishlist);
+  
+  const shouldShowSplash = showSplash && !isWishlist;
+  const sections = isFund || isWishlist ? [] : (isArtist ? ARTIST_SECTIONS : ENGINEER_SECTIONS);
 
   return (
     <LayoutGroup>
       <AnimatePresence>
-        {showSplash && <Splash key="splash" onComplete={() => setShowSplash(false)} />}
+        {shouldShowSplash && <Splash key="splash" onComplete={() => setShowSplash(false)} />}
       </AnimatePresence>
-      {!showSplash && (
+      {!shouldShowSplash && (
         <>
           <Sidebar sections={sections} />
           <main className="main-content">
@@ -51,6 +54,9 @@ const AnimatedRoutes = () => {
                 <Route path="/" element={<EngineerView />} />
                 <Route path="/artist" element={<ArtistView />} />
                 <Route path="/fund" element={<FundTrackerView />} />
+                <Route path="/wishlist" element={<WishlistView />} />
+                <Route path="/birthday" element={<WishlistView />} />
+                <Route path="/bday" element={<WishlistView />} />
               </Routes>
             </AnimatePresence>
             <CautionTape />

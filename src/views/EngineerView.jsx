@@ -164,10 +164,9 @@ const EngineerView = () => {
     { type: 'img', src: '/media/Endless Best Game.png', alt: 'Best Overall Game' },
     { type: 'img', src: '/media/GDC Artist.png', alt: 'Artist Recognition' },
     { type: 'img', src: '/media/Fall25 Deans List.png', alt: 'Fall 2025 Deans List' },
-    { type: 'text', content: 'Develop For Good Fellowship (Summer 2026)' },
-    { type: 'text', content: 'CodePath AI201: Applications of AI Engineering (Summer 2026)' },
-    { type: 'text', content: 'CodePath AI301: AI Open Source Capstone (Fall 2026)' },
-    { type: 'text', content: 'CodePath WEB103: Advanced Web Development (Fall 2026)' }
+    { type: 'img', src: '/media/dfg-badge.png', alt: 'Develop For Good Fellowship' },
+    { type: 'img', src: '/media/Certificate - CodePathAI201.png', alt: 'CodePath AI201: Applications of AI Engineering' },
+    { type: 'img', src: '/media/AWS-Technical-Essentials.pdf.png', alt: 'AWS Technical Essentials' }
   ];
 
   const sortedProjects = [...PROJECTS].sort((a, b) => {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { LayoutGrid, List, ExternalLink, Heart, Gift, Loader2, Coffee, DollarSign, ShoppingBag } from 'lucide-react';
+import { LayoutGrid, List, ExternalLink, Heart, Gift, Loader2, Coffee, DollarSign, ShoppingBag, Cat } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Faux3DButton from '../components/Faux3DButton';
 import styles from './WishlistView.module.css';
@@ -45,9 +45,13 @@ const getEffectiveScreenshot = (item) => {
 const getPlatformName = (url) => {
   if (url.includes('chuffed.org')) return 'Chuffed.org';
   if (url.includes('gofundme.com') || url.includes('gofund.me')) return 'GoFundMe';
+  if (url.includes('paypal.com/paypalme/TyRescues') || url.includes('paypalme/TyRescues')) return 'Ty Rescues';
+  if (url.includes('paypal.com') || url.includes('paypal.me')) return 'PayPal.Me';
+  if (url.includes('mcpet.ae')) return 'McPet Dubai';
+  if (url.includes('amazon.ae') || url.includes('amazon.')) return 'Amazon Wishlist';
   if (url.includes('supernote.com')) return 'Supernote';
+  if (url.includes('store.dropout.tv')) return 'Dropout Store';
   if (url.includes('ko-fi.com')) return 'Ko-fi';
-  if (url.includes('paypal.me')) return 'PayPal';
   return 'Campaign Link';
 };
 
@@ -131,7 +135,35 @@ const DONATION_LINKS = [
   }
 ];
 
-// 2. Birthday Wishlist Items
+// 2. Local Cat Rescue Links
+const CAT_RESCUE_LINKS = [
+  {
+    id: 'rescue-ty-rescues',
+    title: 'Ty Rescues (PayPal.Me)',
+    description: 'Direct veterinary bills, emergency treatment, and cat food fund for rescued street cats.',
+    url: 'https://www.paypal.com/paypalme/TyRescues'
+  },
+  {
+    id: 'rescue-amazon-shopping-list',
+    title: 'Rescue Shopping List (Amazon.ae)',
+    description: 'Essential wet and dry cat food, medical supplies, and kitten care wishlist.',
+    url: 'https://www.amazon.ae/hz/wishlist/ls/290CHVX6IXGO0?ref_=wl_share&utm_source=ig&utm_medium=social&utm_content=link_in_bio'
+  },
+  {
+    id: 'rescue-mcpet-dubai',
+    title: 'Dubai Street Kitties Wishlist (McPet)',
+    description: 'Pet food, recovery cans, and rescue essentials delivered directly to Dubai Street Kitties.',
+    url: 'https://www.mcpet.ae/product/dubai-street-kitties-wishlist/'
+  },
+  {
+    id: 'rescue-amazon-monthly-shelter',
+    title: 'Monthly List for Shelter (Amazon.ae)',
+    description: 'Monthly food and shelter care essentials for local shelter kitties.',
+    url: 'https://www.amazon.ae/hz/wishlist/ls/3SVPUK3KDW1AC?ref_=wl_share'
+  }
+];
+
+// 3. Birthday Wishlist Items
 const WISHLIST_ITEMS = [
   {
     id: 'wish-supernote-manta',
@@ -148,7 +180,7 @@ const WISHLIST_ITEMS = [
 ];
 
 /* Screenshot box with live rendering status */
-const ScreenshotBox = ({ item, isWishlist }) => {
+const ScreenshotBox = ({ item, category }) => {
   const [loading, setLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
@@ -174,7 +206,7 @@ const ScreenshotBox = ({ item, isWishlist }) => {
           {getPlatformName(item.url)}
         </span>
         <span className={styles.fallbackPrompt}>
-          {isWishlist ? <Gift size={14} /> : <Heart size={14} />} Click to open in new tab
+          {category === 'rescue' ? <Cat size={14} /> : category === 'wishlist' ? <Gift size={14} /> : <Heart size={14} />} Click to open in new tab
         </span>
       </div>
 
@@ -208,7 +240,7 @@ const ScreenshotBox = ({ item, isWishlist }) => {
 };
 
 /* Collapsed Bar Thumbnail with loading state */
-const BarThumb = ({ item, isWishlist }) => {
+const BarThumb = ({ item, category }) => {
   const [loading, setLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
@@ -229,7 +261,7 @@ const BarThumb = ({ item, isWishlist }) => {
   return (
     <div className={styles.barThumbWrapper}>
       <div className={styles.barThumbFallback}>
-        {isWishlist ? <Gift size={20} /> : <Heart size={20} />}
+        {category === 'rescue' ? <Cat size={20} /> : category === 'wishlist' ? <Gift size={20} /> : <Heart size={20} />}
       </div>
 
       {loading && !hasError && (
@@ -277,7 +309,7 @@ const WishlistView = () => {
     setHasManuallyToggled(true);
   };
 
-  const renderItems = (items, isWishlist = false) => {
+  const renderItems = (items, category = 'donation') => {
     if (viewMode === 'grid') {
       return (
         <div className={styles.gridContainer}>
@@ -295,7 +327,7 @@ const WishlistView = () => {
                 <ExternalLink size={16} className={styles.cardIcon} />
               </div>
               <p className={styles.cardDesc}>{item.description}</p>
-              <ScreenshotBox item={item} isWishlist={isWishlist} />
+              <ScreenshotBox item={item} category={category} />
             </a>
           ))}
         </div>
@@ -313,7 +345,7 @@ const WishlistView = () => {
             className={styles.barItem}
             title={`Open ${item.title} in a new tab`}
           >
-            <BarThumb item={item} isWishlist={isWishlist} />
+            <BarThumb item={item} category={category} />
             <div className={styles.barContent}>
               <h3 className={styles.barTitle}>{item.title}</h3>
               <p className={styles.barDesc}>{item.description}</p>
@@ -361,13 +393,19 @@ const WishlistView = () => {
       </div>
 
       {/* Group 1: Fundraiser donation links */}
-      {renderItems(DONATION_LINKS, false)}
+      {renderItems(DONATION_LINKS, 'donation')}
 
       {/* Faint divider & spacing (no section titles) */}
       <hr className={styles.faintDivider} />
 
-      {/* Group 2: Wishlist items */}
-      {renderItems(WISHLIST_ITEMS, true)}
+      {/* Group 2: Local cat rescue links */}
+      {renderItems(CAT_RESCUE_LINKS, 'rescue')}
+
+      {/* Faint divider & spacing (no section titles) */}
+      <hr className={styles.faintDivider} />
+
+      {/* Group 3: Wishlist items */}
+      {renderItems(WISHLIST_ITEMS, 'wishlist')}
 
       {/* Bottom links: Kofi + PayPal + ACGGoods */}
       <div className={styles.bottomSectionWrapper}>

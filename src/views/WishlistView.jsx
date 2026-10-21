@@ -50,7 +50,6 @@ const getPlatformName = (url) => {
   if (url.includes('mcpet.ae')) return 'McPet Dubai';
   if (url.includes('amazon.ae') || url.includes('amazon.')) return 'Amazon Wishlist';
   if (url.includes('supernote.com')) return 'Supernote';
-  if (url.includes('store.dropout.tv')) return 'Dropout Store';
   if (url.includes('ko-fi.com')) return 'Ko-fi';
   return 'Campaign Link';
 };
@@ -170,12 +169,6 @@ const WISHLIST_ITEMS = [
     title: 'Supernote Manta (10.7" E-Ink Notebook)',
     description: 'FeelWrite 2 self-recovery soft film & Ceramic NeverReplace nib with flexible E Ink display for sketching and note-taking.',
     url: 'https://supernote.com/products/supernote-manta?variant=45959389348076'
-  },
-  {
-    id: 'wish-d20-city-council-of-darkness-glow-crewneck-black',
-    title: 'D20 City Council of Darkness Glow Crewneck Black',
-    description: 'Glow-in-the-dark crewneck sweater with D20 City Council of Darkness design.',
-    url: 'https://store.dropout.tv/products/d20-city-council-of-darkness-glow-crewneck-black?variant=50433102512373'
   }
 ];
 

@@ -50,6 +50,7 @@ const getPlatformName = (url) => {
   if (url.includes('mcpet.ae')) return 'McPet Dubai';
   if (url.includes('amazon.ae') || url.includes('amazon.')) return 'Amazon Wishlist';
   if (url.includes('supernote.com')) return 'Supernote';
+  if (url.includes('store.dropout.tv') || url.includes('dropout.tv')) return 'Dropout Store';
   if (url.includes('ko-fi.com')) return 'Ko-fi';
   return 'Campaign Link';
 };
@@ -169,6 +170,18 @@ const WISHLIST_ITEMS = [
     title: 'Supernote Manta (10.7" E-Ink Notebook)',
     description: 'FeelWrite 2 self-recovery soft film & Ceramic NeverReplace nib with flexible E Ink display for sketching and note-taking.',
     url: 'https://supernote.com/products/supernote-manta?variant=45959389348076'
+  },
+  {
+    id: 'wish-stepmother-crewneck-black',
+    title: 'Stepmother Crewneck Sweater (Black)',
+    description: 'Official Dimension 20: Neverafter crewneck in black French terry cotton with artwork by Niccolò Tonelli.',
+    url: 'https://store.dropout.tv/products/stepmother-crewneck-sweater-black?variant=46658040332533'
+  },
+  {
+    id: 'wish-worlds-of-d20-calendar',
+    title: 'Worlds of Dimension 20 Calendar',
+    description: 'Official Dropout 13-month spiral-bound wall calendar featuring custom artwork from Dimension 20 campaigns.',
+    url: 'https://store.dropout.tv/products/worlds-of-d20-calendar-2027'
   }
 ];
 
